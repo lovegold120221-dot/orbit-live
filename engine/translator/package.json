@@ -1,0 +1,15 @@
+{
+  "name": "orbit-ai-live-translator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "check": "node --check src/server.mjs && node --check src/audio.mjs && node --check src/languages.mjs"
+  },
+  "dependencies": {
+    "opusscript": "^0.0.8",
+    "ws": "^8.18.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "orbit-donation-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "check": "node --check src/server.mjs"
+  },
+  "dependencies": {
+    "stripe": "22.6.2"
+  }
+}

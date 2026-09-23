@@ -1,0 +1,68 @@
+services:
+  web:
+    build:
+      context: ./orbit-web
+      args:
+        JITSI_IMAGE_VERSION: ${JITSI_IMAGE_VERSION:-unstable}
+    image: orbit/meeting-web:${JITSI_IMAGE_VERSION:-unstable}
+    environment:
+      ENABLE_AUDIO_TRANSLATION: "1"
+      AUDIO_TRANSLATION_DUCKED_VOLUME: ${AUDIO_TRANSLATION_DUCKED_VOLUME:-0.00}
+    depends_on:
+      orbit-donation-gateway:
+        condition: service_started
+
+  prosody:
+    environment:
+      ENABLE_AUDIO_TRANSLATION: "1"
+
+  jicofo:
+    environment:
+      JICOFO_TRANSLATION_URL_TEMPLATE: ws://orbit-ai-translator:8080/translate/{{MEETING_ID}}
+
+  orbit-ai-translator:
+    build:
+      context: ./translator
+    image: orbit/orbitai-live-translator:2.0.0
+    restart: unless-stopped
+    environment:
+      PORT: "8080"
+      ORBITAI_API_KEY: ${ORBITAI_API_KEY:?Set ORBITAI_API_KEY in .env}
+      ORBITAI_TRANSLATION_MODEL: ${ORBITAI_TRANSLATION_MODEL:-gemini-3.5-live-translate-preview}
+      ORBITAI_ECHO_TARGET_LANGUAGE: "true"
+      LOG_LEVEL: ${TRANSLATOR_LOG_LEVEL:-info}
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.mjs"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      meet.jitsi:
+
+  orbit-donation-gateway:
+    build:
+      context: ./donation-gateway
+    image: orbit/donation-gateway:1.0.0
+    restart: unless-stopped
+    environment:
+      PORT: "8090"
+      PUBLIC_URL: ${PUBLIC_URL}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:?Set STRIPE_SECRET_KEY in .env}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      DONATION_DEFAULT_CURRENCY: ${DONATION_DEFAULT_CURRENCY:-usd}
+      DONATION_ALLOWED_CURRENCIES: ${DONATION_ALLOWED_CURRENCIES:-usd,php,eur}
+      DONATION_MIN_MINOR: ${DONATION_MIN_MINOR:-100}
+      DONATION_MAX_MINOR: ${DONATION_MAX_MINOR:-100000000}
+    expose:
+      - "8090"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8090/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    networks:
+      meet.jitsi:

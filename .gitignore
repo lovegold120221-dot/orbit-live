@@ -1,0 +1,22 @@
+# Secrets — never commit live credentials
+.env
+.env.local
+.env.*
+!.env.example
+engine/.env
+engine/.env.*
+!engine/env.example
+
+# Dependencies
+node_modules/
+
+# Local snapshots / backups
+.backups/
+engine/.backups/
+
+# OS / editor noise
+.DS_Store
+*.log
+
+# Stray artifact dir
+~/

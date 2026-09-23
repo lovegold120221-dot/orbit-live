@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test translation.test.mjs ui.test.mjs" },
+  "devDependencies": { "jsdom": "^26.1.0" }
+}

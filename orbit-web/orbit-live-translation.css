@@ -1,0 +1,146 @@
+#orbit-live-translation-card {
+  box-sizing: border-box;
+  margin: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #2b2b2f;
+  border: 1px solid rgba(255,255,255,.08);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+#orbit-live-translation-card .orbit-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; font-size:14px; font-weight:700; }
+#orbit-live-translation-card .orbit-badge { padding:2px 7px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.04em; background:rgba(122,162,247,.18); color:#b8cbff; }
+#orbit-live-translation-card label { display:block; margin:0 0 6px; color:rgba(255,255,255,.72); font-size:12px; }
+#orbit-live-translation-card select { width:100%; box-sizing:border-box; border:1px solid rgba(255,255,255,.13); border-radius:6px; background:#1f2024; color:#fff; padding:10px 34px 10px 10px; font-size:14px; outline:none; }
+#orbit-live-translation-card select:focus { border-color:#6d9cff; box-shadow:0 0 0 2px rgba(109,156,255,.18); }
+#orbit-live-translation-status,
+#orbit-translator-panel-status { display:flex; align-items:center; gap:7px; min-height:18px; margin-top:9px; font-size:12px; color:rgba(255,255,255,.66); }
+#orbit-live-translation-status .dot,
+#orbit-translator-panel-status .dot { width:7px; height:7px; border-radius:50%; background:#74777f; }
+#orbit-live-translation-status.active .dot,
+#orbit-translator-panel-status.active .dot { background:#45d483; }
+#orbit-live-translation-status.error .dot,
+#orbit-translator-panel-status.error .dot { background:#ff6b6b; }
+#orbit-live-translation-status.connecting .dot,
+#orbit-translator-panel-status.connecting .dot { background:#f5c451; }
+#orbit-live-translation-card .orbit-note { margin-top:9px; line-height:1.35; color:rgba(255,255,255,.46); font-size:11px; }
+
+.orbit-toolbar-button {
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  outline:0;
+  color:#fff;
+  background:rgba(255,255,255,.10);
+  min-width:48px;
+  min-height:48px;
+  padding:7px 10px;
+  margin:0 4px;
+  border-radius:8px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  cursor:pointer;
+  font:inherit;
+  transition:background .16s ease, transform .16s ease;
+}
+.orbit-toolbar-button:hover { background:rgba(255,255,255,.18); }
+.orbit-toolbar-button:active { transform:translateY(1px); }
+.orbit-toolbar-button.active { background:#4f75ff; }
+#orbit-translate-toolbar-button.active { background:#2f9e68; }
+.orbit-toolbar-button svg { width:21px; height:21px; display:block; }
+.orbit-toolbar-label { font-size:9px; line-height:1; font-weight:600; }
+
+#orbit-donation-drawer {
+  position:fixed;
+  z-index:100000;
+  top:0;
+  right:0;
+  bottom:0;
+  width:min(390px, 100vw);
+  box-sizing:border-box;
+  background:#202124;
+  color:#fff;
+  border-left:1px solid rgba(255,255,255,.08);
+  box-shadow:-10px 0 35px rgba(0,0,0,.34);
+  transform:translateX(105%);
+  transition:transform .2s ease;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  display:flex;
+  flex-direction:column;
+}
+#orbit-donation-drawer.open { transform:translateX(0); }
+#orbit-translator-panel {
+  position:fixed;
+  z-index:100000;
+  top:0;
+  left:0;
+  bottom:0;
+  width:min(390px, 100vw);
+  box-sizing:border-box;
+  background:#202124;
+  color:#fff;
+  border-right:1px solid rgba(255,255,255,.08);
+  box-shadow:10px 0 35px rgba(0,0,0,.34);
+  transform:translateX(-105%);
+  transition:transform .2s ease;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  display:flex;
+  flex-direction:column;
+}
+#orbit-translator-panel.open { transform:translateX(0); }
+.orbit-start-button { width:100%; margin-top:14px; min-height:48px; border:0; border-radius:9px; background:#2f9e68; color:#fff; font-size:15px; font-weight:800; cursor:pointer; }
+.orbit-start-button:hover { background:#35b376; }
+.orbit-start-button.stop { background:#c0574f; }
+.orbit-start-button.stop:hover { background:#d06659; }
+.orbit-start-button:disabled { opacity:.6; cursor:wait; }
+.orbit-transcript-heading { margin:20px 0 10px; font-size:14px; font-weight:700; }
+.orbit-transcripts { max-height:45vh; min-height:80px; overflow-y:auto; overflow-wrap:anywhere; overscroll-behavior:contain; }
+.orbit-transcript-row { padding:12px; margin:0 0 10px; background:#16171a; border:1px solid rgba(255,255,255,.1); border-radius:8px; }
+.orbit-transcript-speaker { color:#c3ccdf; font-size:12px; font-weight:650; margin-bottom:10px; }
+.orbit-detected { display:inline-flex; align-items:center; gap:6px; margin:0 0 6px; padding:3px 9px; border-radius:999px; background:rgba(122,162,247,.16); color:#b8cbff; font-size:11px; font-weight:650; }
+.orbit-detect-icon { width:13px; height:13px; flex:none; }
+.orbit-detect-note { display:flex; align-items:center; gap:8px; margin:0 0 6px; padding:8px 10px; border-radius:8px; background:rgba(122,162,247,.10); color:#b8cbff; font-size:12px; line-height:1.4; }
+.orbit-search { margin-bottom:8px; }
+#orbit-screen-caption { margin-top:10px; font-size:12px; line-height:1.5; font-style:italic; color:rgba(255,255,255,.55); }
+#orbit-screen-caption.has-text { color:#b8cbff; }
+.orbit-transcript-label { color:#a3adc1; font-size:11px; margin-top:8px; }
+.orbit-transcript-row p { margin:4px 0 0; font-size:14px; line-height:1.5; white-space:pre-wrap; color:#f0f1f4; }
+.orbit-transcript-row p.orbit-transcript-translated { color:#b9d1ff; }
+.orbit-transcript-empty { color:#a3adc1; font-size:12px; line-height:1.5; }
+#orbit-live-translation-card .orbit-transcripts { max-height:32vh; }
+.orbit-donation-header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 18px 14px; border-bottom:1px solid rgba(255,255,255,.08); }
+.orbit-donation-header h2 { margin:2px 0 0; font-size:20px; line-height:1.2; }
+.orbit-donation-eyebrow { font-size:10px; font-weight:800; letter-spacing:.16em; color:#8fa8ff; }
+.orbit-donation-close { width:38px; height:38px; border-radius:50%; border:0; background:rgba(255,255,255,.08); color:#fff; font-size:26px; line-height:1; cursor:pointer; }
+.orbit-donation-close:hover { background:rgba(255,255,255,.15); }
+.orbit-donation-body { padding:18px; overflow:auto; }
+.orbit-donation-copy { margin:0 0 18px; color:rgba(255,255,255,.7); line-height:1.5; font-size:14px; }
+.orbit-field-label { display:block; margin:14px 0 7px; font-size:12px; font-weight:650; color:rgba(255,255,255,.78); }
+.orbit-field-label span { font-weight:400; color:rgba(255,255,255,.4); }
+.orbit-field { width:100%; box-sizing:border-box; min-height:43px; border-radius:8px; border:1px solid rgba(255,255,255,.13); background:#16171a; color:#fff; padding:10px 11px; outline:none; font-size:14px; }
+.orbit-field:focus { border-color:#6d90ff; box-shadow:0 0 0 2px rgba(109,144,255,.18); }
+.orbit-donation-presets { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+.orbit-preset { border:1px solid rgba(255,255,255,.13); border-radius:9px; background:#2b2c31; color:#fff; padding:11px; font-size:15px; font-weight:700; cursor:pointer; }
+.orbit-preset:hover { background:#34363d; }
+.orbit-preset.selected { border-color:#6d90ff; background:rgba(79,117,255,.22); }
+.orbit-money-field { position:relative; }
+.orbit-money-field > span { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:rgba(255,255,255,.65); z-index:1; }
+.orbit-money-field input { padding-left:30px; }
+.orbit-donate-submit { width:100%; margin-top:18px; min-height:46px; border:0; border-radius:9px; background:#4f75ff; color:#fff; font-size:14px; font-weight:750; cursor:pointer; }
+.orbit-donate-submit:hover { background:#6486ff; }
+.orbit-donate-submit:disabled { opacity:.58; cursor:wait; }
+.orbit-donation-status { min-height:19px; margin-top:12px; font-size:12px; line-height:1.45; color:rgba(255,255,255,.62); }
+.orbit-donation-status.error { color:#ff8e8e; }
+.orbit-donation-status.success { color:#65dfa0; }
+.orbit-donation-status.working { color:#f3cf6a; }
+.orbit-stripe-note { margin-top:14px; font-size:10.5px; line-height:1.45; color:rgba(255,255,255,.39); }
+
+@media (max-width: 600px) {
+  #orbit-donation-drawer, #orbit-translator-panel { width:100vw; }
+  .orbit-toolbar-label { display:none; }
+  .orbit-toolbar-button { min-width:44px; min-height:44px; padding:8px; }
+}
